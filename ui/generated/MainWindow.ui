@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>757</width>
+    <height>598</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Qt ShadowsocksR</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QGroupBox" name="serversGroupBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>6</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="title">
+       <string>Servers</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
+       <item>
+        <widget class="QTableView" name="tableView">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="connectButton">
+           <property name="text">
+            <string>Connect</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="addButton">
+           <property name="text">
+            <string>Add</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="disconnectButton">
+           <property name="text">
+            <string>Disconnect</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="removeButton">
+           <property name="text">
+            <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="serverConfigGroupBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>6</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="title">
+       <string>Server Configuration</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0">
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="fieldGrowthPolicy">
+          <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+         </property>
+         <property name="labelAlignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="verticalSpacing">
+          <number>12</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="serverLabel">
+           <property name="text">
+            <string>Server: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="serverLineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="portLabel">
+           <property name="text">
+            <string>Port: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="portLineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="passwordLabel">
+           <property name="text">
+            <string>Password: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="passwordLineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="encryptionLabel">
+           <property name="text">
+            <string>Encryption: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="encryptionLineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="protocolLabel">
+           <property name="text">
+            <string>Protocol: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="protocolLineEdit"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="protocolParamsLabel">
+           <property name="text">
+            <string>Protocol Params: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="protocolParamsComboBox"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="obfuscationLabel">
+           <property name="text">
+            <string>Obfuscation: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="obfuscationLineEdit"/>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="obfuscationParamsLabel">
+           <property name="text">
+            <string>Obfuscation Params: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLineEdit" name="obfuscationParamsLineEdit"/>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="remarkLabel">
+           <property name="text">
+            <string>Remark: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="remarkLineEdit"/>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="groupLabel">
+           <property name="text">
+            <string>Group: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QComboBox" name="groupComboBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <item>
+          <widget class="QPushButton" name="cancelRestoreButton">
+           <property name="text">
+            <string>Cancel/Restore</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addSaveButton">
+           <property name="text">
+            <string>Add/Save</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>757</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSystem_Proxy">
+    <property name="title">
+     <string>System Proxy</string>
+    </property>
+    <addaction name="actionEnable_Global_Proxy"/>
+    <addaction name="actionPAC_Proxy"/>
+    <addaction name="actionDisable_System_Proxy"/>
+   </widget>
+   <widget class="QMenu" name="menuPreferences">
+    <property name="title">
+     <string>Subscriptions</string>
+    </property>
+    <addaction name="actionAdd_Subscription_URL"/>
+    <addaction name="actionManage_Server_Subscriptions"/>
+    <addaction name="actionUpdate_Server_Subscriptions"/>
+   </widget>
+   <widget class="QMenu" name="menuPreferences_2">
+    <property name="title">
+     <string>Import/Export</string>
+    </property>
+    <addaction name="actionImport_From_QRcode"/>
+    <addaction name="actionImport_from_URL"/>
+    <addaction name="actionExport_to_URLs"/>
+   </widget>
+   <widget class="QMenu" name="menuPreferences_3">
+    <property name="title">
+     <string>Preferences</string>
+    </property>
+    <addaction name="actionInitialize_Reset"/>
+    <addaction name="actionSetting"/>
+   </widget>
+   <addaction name="menuSystem_Proxy"/>
+   <addaction name="menuPreferences"/>
+   <addaction name="menuPreferences_2"/>
+   <addaction name="menuPreferences_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionEnable_Global_Proxy">
+   <property name="text">
+    <string>Global</string>
+   </property>
+  </action>
+  <action name="actionPAC_Proxy">
+   <property name="text">
+    <string>PAC </string>
+   </property>
+  </action>
+  <action name="actionDisable_System_Proxy">
+   <property name="text">
+    <string>Disable System Proxy</string>
+   </property>
+  </action>
+  <action name="actionAdd_Subscription_URL">
+   <property name="text">
+    <string>Add Subscription URL</string>
+   </property>
+  </action>
+  <action name="actionManage_Server_Subscriptions">
+   <property name="text">
+    <string>Manage Server Subscriptions</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Server_Subscriptions">
+   <property name="text">
+    <string>Update Server Subscriptions</string>
+   </property>
+  </action>
+  <action name="actionImport_From_QRcode">
+   <property name="text">
+    <string>Import from QRcode</string>
+   </property>
+  </action>
+  <action name="actionImport_from_URL">
+   <property name="text">
+    <string>Import from URLs</string>
+   </property>
+  </action>
+  <action name="actionExport_to_URLs">
+   <property name="text">
+    <string>Export to URLs</string>
+   </property>
+  </action>
+  <action name="actionInitialize_Reset">
+   <property name="text">
+    <string>Initialize/Reset SSR</string>
+   </property>
+  </action>
+  <action name="actionSetting">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
