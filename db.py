@@ -2,8 +2,7 @@ import os
 import sqlite3
 from functools import partial
 
-from PyQt5.QtCore import QObject, pyqtSignal
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from PyQt5.QtSql import QSqlDatabase, QSqlDriver
 from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -12,22 +11,7 @@ import db_params
 
 NonNull = partial(Column, nullable=False)
 Base = declarative_base()
-
-
-class ObservableQSqlDatabase(QObject, QSqlDatabase):
-
-    def __init__(self, *args, **kwargs):
-        self.onExecution = pyqtSignal()
-        super(QSqlDatabase).__init__(*args, **kwargs)
-
-    def exec(self, update=False, *args, **kwargs) -> QSqlQuery:
-        res = super(QSqlDatabase).exec(*args, **kwargs)
-        if update:
-            self.onExecution.emit()
-        return res
-
-    def exec_(self, *args, **kwargs):
-        return self.exec(*args, **kwargs)
+Base.onTableChanged = None
 
 
 class Subscription(Base):
@@ -54,6 +38,7 @@ class Server(Base):
 
 
 Subscription.servers = relationship(Server, order_by=Server.id, back_populates='server')
+callbacks = dict()
 
 
 def init_db(path):
@@ -76,7 +61,24 @@ def init_db(path):
     if init:
         Base.metadata.create_all(bind=mock)
 
+    assert database.driver().hasFeature(QSqlDriver.EventNotifications)
+
+    for tablename in Base.metadata.tables.keys():
+        database.driver().subscribeToNotification(tablename)
+
+    def call_callbacks(name: str):
+        print("db changed")
+        cb = Base.metadata.tables[name].onTableChanged
+        if cb:
+            cb()
+
+    database.driver().notification.connect(call_callbacks)
+
     return database, mock
 
 
 db, engine = init_db(db_params.path)
+
+# test
+Server.onTableChanged = lambda: print('Servers changed')
+Subscription.onTableChanged = lambda: print('Subscriptions changed')

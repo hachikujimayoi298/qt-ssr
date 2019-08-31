@@ -1,12 +1,12 @@
 import traceback
 
 from PyQt5 import QtCore
-from PyQt5.QtCore import QObject, pyqtSignal, QRunnable, pyqtSlot, QThreadPool, QSettings
+from PyQt5.QtCore import QObject, pyqtSignal, QRunnable, pyqtSlot, QThreadPool
 from PyQt5.QtGui import QTextCursor
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox
 
 from ui.generated.SSRInstallDialog import Ui_SSRInstallDialog
-from utils import init_ssr_at
+from utils.networking import init_ssr_at
 
 
 class SSRInstallSignals(QObject):
@@ -18,10 +18,8 @@ class SSRInstallSignals(QObject):
 class SSRInstallThread(QRunnable):
 
     def __init__(self, path, *args, **kwargs):
-        super(SSRInstallThread, self).__init__()
+        super(SSRInstallThread, self).__init__(*args, **kwargs)
         self.path = path
-        self.args = args
-        self.kwargs = kwargs
         self.signals = SSRInstallSignals()
 
     # noinspection PyBroadException
@@ -39,10 +37,10 @@ class SSRInstallThread(QRunnable):
 class SSRInstallDialog(QDialog, Ui_SSRInstallDialog):
 
     def __init__(self, *args, path, **kwargs):
-        super(QDialog, self).__init__(*args, **kwargs)
+        super(SSRInstallDialog, self).__init__(*args, **kwargs)
         self.setupUi(self)
         self.buttonBox.button(QDialogButtonBox.Ok).setEnabled(False)
-        self.threadPool = QThreadPool()
+        self.threadPool = QThreadPool(parent=self)
         self.path = path
         self.installThread = SSRInstallThread(self.path)
         self.installThread.signals.stderr.connect(self.display_stderr)

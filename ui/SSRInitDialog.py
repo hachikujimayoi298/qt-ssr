@@ -9,7 +9,7 @@ from ui.generated.SSRInitDialog import Ui_InitDialog
 class SSRInitDialog(QDialog, Ui_InitDialog):
 
     def __init__(self, *args, **kwargs):
-        super(QDialog, self).__init__(*args, **kwargs)
+        super(SSRInitDialog, self).__init__(*args, **kwargs)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.browse_ssr_folder)
 
@@ -29,5 +29,5 @@ class SSRInitDialog(QDialog, Ui_InitDialog):
             self.path = path
 
     def install(self):
-        dlg = SSRInstallDialog(path=self.path)
+        dlg = SSRInstallDialog(path=self.path, parent=self)
         dlg.exec_()
